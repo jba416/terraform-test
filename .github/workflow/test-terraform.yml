@@ -1,0 +1,24 @@
+name: Add-Terraform Plan
+
+on:
+  workflow_dispatch:
+  pull_request: # By default, a workflow only runs when a pull_request event's activity type is opened, synchronize, or reopened
+    branches:
+      - 'master'
+permissions: write-all
+
+jobs:
+  folders:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.setup-matrix.outputs.value }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Create-Matrix
+        id: setup-matrix
+        run: ./script/scrip.sh
+        shell: bash

@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Create-Matrix
+      - name: Matrix
         id: setup-matrix
         run: ./script/scrip.sh
         shell: bash

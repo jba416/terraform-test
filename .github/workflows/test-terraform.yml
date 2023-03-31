@@ -21,7 +21,7 @@ jobs:
       TerraformBackendStorageAccount: githubactionsjorge
       TerraformBackendResourceGroup: devops-test
       TerraformBackendStorageContainer: test
-      ARM_SKIP_PROVIDER_REGISTRATION: "false"    
+      ARM_SKIP_PROVIDER_REGISTRATION: "true"    
       
     defaults:
       run:

@@ -40,7 +40,7 @@ jobs:
     - name: Terraform Plan
       run:  |
         cd ./terraform
-        terraform plan -out=plan.tfplan -input=false 
+        terraform plan -out=plan.tf plan -input=false 
     - name: Terraform Apply
       if: ${{ inputs.TFAction == 'apply'}}  
       run: terraform apply -input=false -auto-approve plan.tfplan

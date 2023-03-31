@@ -40,10 +40,14 @@ jobs:
     - name: Terraform Plan
       run:  |
         cd ./terraform
-        terraform plan -out=plan.tf 
+        terraform plan -out=plan.tfplan -input=false
     - name: Terraform Apply
       if: ${{ inputs.TFAction == 'apply'}}  
-      run: terraform apply -input=false -auto-approve plan.tf
+      run: |
+        cd ./terraform
+        terraform apply -input=false -auto-approve plan.tfplan
     - name: Terraform Destroy
       if: ${{ inputs.TFAction == 'destroy' }} 
-      run: terraform destroy -input=false -auto-approve
+      run: |
+        cd ./terraform
+        terraform destroy -input=false -auto-approve

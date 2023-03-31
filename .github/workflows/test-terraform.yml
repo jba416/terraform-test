@@ -20,7 +20,8 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT }}
       TerraformBackendStorageAccount: githubactionsjorge
       TerraformBackendResourceGroup: devops-test
-      TerraformBackendStorageContainer: test        
+      TerraformBackendStorageContainer: test
+      ARM_SKIP_PROVIDER_REGISTRATION: "false"    
       
     defaults:
       run:

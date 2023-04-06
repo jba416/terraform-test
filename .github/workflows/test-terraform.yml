@@ -22,7 +22,7 @@ jobs:
       - name: CreateMatrix
         id: setup-m
         run: |
-          cd ./script/script.sh
+          bash ./script/script.sh
         shell: bash
   terraform:
     name: 'Terraform'

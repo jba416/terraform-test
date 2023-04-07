@@ -28,6 +28,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: dev
+    needs: [   updatedfolders ]
     strategy:
       fail-fast: false
       matrix:

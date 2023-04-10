@@ -55,19 +55,19 @@ jobs:
       uses: hashicorp/setup-terraform@v1
     - name: Terraform Init
       run:  |
-        echo carpetas a modificar ${{ setup-m.value }}
+        echo carpetas a modificar ${{ matrix.value }}
         cd ${{ steps.setup-m.outputs.value }}
         ls
         terraform init -backend-config=storage_account_name=$TerraformBackendStorageAccount -backend-config=container_name=$TerraformBackendStorageContainer -backend-config=key=dev.tfstate -backend-config=resource_group_name=$TerraformBackendResourceGroup -backend-config=subscription_id="$ARM_SUBSCRIPTION_ID" -backend-config=tenant_id="$ARM_TENANT_ID" -backend-config=client_id="$ARM_CLIENT_ID" -backend-config=client_secret="$ARM_CLIENT_SECRET"
     - name: Terraform Plan
       run:  |
-        echo $value
-        cd ${{ steps.setup-m.outputs.value }}
+        echo ${{ matrix.value }}
+        cd ${{ matrix.value }}
         terraform plan -out=plan.tfplan -input=false
     - name: Terraform Apply
       if: ${{ inputs.TFAction == 'apply'}}  
       run: |
-        cd ${{ steps.setup-m.outputs.value }}
+        cd ${{ matrix.value }}
         terraform apply -input=false -auto-approve plan.tfplan
     - name: Terraform Destroy
       if: ${{ inputs.TFAction == 'destroy' }} 
